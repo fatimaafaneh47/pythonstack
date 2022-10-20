@@ -1,0 +1,16 @@
+.box{
+    width: 300px;
+    height: 100px;
+    border: 1px solid black;
+    margin:  10% 40%;
+    text-align: center;
+    padding: 2%;
+}
+.clock{
+    width: 300px;
+    height: 100px;
+    border: 1px solid black;
+    margin: 10% 40%;
+    text-align: center;
+    padding: 2%;
+}
