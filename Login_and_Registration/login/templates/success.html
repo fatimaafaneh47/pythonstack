@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <a href="/logout">Log off</a>
+        <h1>Welcome, {{user.first_name}}</h1>
+        <div>
+        <form action="/wall/postmessage" method="POST">
+            {% csrf_token %}
+        <p>Post a message</p>
+        <textarea name="message"  cols="30" rows="5"></textarea>
+        <br>
+        <button>Post a message</button>
+    </form> 
+    {% for m in messages %}
+    <div>
+        <p value='{{m.id}}'>{{m.message}}</p>
+    </div>
+    <div>
+        <form action="/wall/comment/{{m.id}}" method="POST">
+            {% csrf_token %}
+        <p>Post a comment</p>
+        <textarea name="comment" id="" cols="30" rows="5"></textarea>
+        {% for c in m.comments.all %}
+        <p>{{c.comment}}</p>
+        {% endfor %}
+        <br>
+        <button>Post a comment</button>
+    </form>
+    </div>
+    {% endfor %}
+    </div>
+    </body>
+    </html>
+</body>
+</html>

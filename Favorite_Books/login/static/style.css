@@ -1,0 +1,13 @@
+.main{
+    display: flex;
+    justify-content: space-around;     
+}
+.section{
+    display: flex;
+    justify-content: space-around;    
+}
+
+.main1{
+    display: flex;
+    justify-content: space-around;   
+}

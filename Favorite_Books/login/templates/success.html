@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">     
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <a href="/logout">Log off</a>
+        <h1>Welcome, {{user.first_name}}</h1>
+        <ul class="messages">    
+            {% for message in messages %}    
+                <p>{{ message }}</p>
+            {% endfor %}
+        </ul>
+        <div class="section">
+            <div>
+        <form action="/books/add_books/" method="POST">
+            {%csrf_token%}
+        <h2>Add a Favorite Book</h2>
+        <p>Title</p>
+        <input type="text" name="title">
+        <p>Description</p>
+        <input type="text" name="description">
+        <br>
+        <br>
+        <button>Add</button>
+        </form>
+    </div>
+        <div>
+        <h2>All Books</h2>
+        {% for book in books %} 
+        <a href="/books/{{book.id}}">{{book.Title}}</a>
+        <p>added by {{book.user.first_name}}</p>
+        
+        {% if user in book.users.all %}
+        <a href="/books/{{book.id}}/delete_fav">UnFavorites</a>
+        {% endif %}
+        {% if user not in book.users.all %} 
+        <a href="/books/{{book.id}}/add_fav">Add to favorites</a>
+        {% endif %}
+        <br>
+        <br>
+        
+        {% endfor %}
+</div>
+</div>
+
+
+    </body>
+    </html>
+</body>
+</html>
